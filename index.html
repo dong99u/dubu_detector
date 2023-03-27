@@ -90,7 +90,32 @@
 					alt="your image"
 				/>
 				<p class="result-message"></p>
-				<div id="label-container"></div>
+				<div id="label-container" class="">
+					<div class="result-box">
+						<span></span>
+						<div class="progress" style="height: 30px">
+							<div
+								class="progress-bar progress-bar-striped"
+								role="progressbar"
+								aria-valuenow="10"
+								aria-valuemin="0"
+								aria-valuemax="100"
+							></div>
+						</div>
+					</div>
+					<div class="result-box">
+						<span></span>
+						<div class="progress" style="height: 30px">
+							<div
+								class="progress-bar progress-bar-striped bg-success"
+								role="progressbar"
+								aria-valuenow="25"
+								aria-valuemin="0"
+								aria-valuemax="100"
+							></div>
+						</div>
+					</div>
+				</div>
 				<div class="image-title-wrap">
 					<button
 						type="button"
@@ -149,7 +174,6 @@
 
 					reader.readAsDataURL(input.files[0]);
 					init().then(() => {
-						console.log("hello");
 						predict();
 					});
 				} else {
@@ -221,12 +245,27 @@
 						resultMessage = "알 수 없음";
 				}
 				$(".result-message").html(resultMessage);
+
 				for (let i = 0; i < maxPredictions; i++) {
-					const classPrediction =
-						prediction[i].className +
-						": " +
-						prediction[i].probability.toFixed(2);
-					labelContainer.childNodes[i].innerHTML = classPrediction;
+					const resultBoxes = document.querySelectorAll(
+						"#label-container .result-box"
+					);
+					resultBoxes[i].querySelector(
+						"span"
+					).innerText = `${prediction[i].className}`;
+					const progressDiv = resultBoxes[i].querySelector(
+						".progress .progress-bar"
+					);
+					progressDiv.setAttribute(
+						"style",
+						`width: ${prediction[i].probability * 100}%`
+					);
+					progressDiv.innerText = `${Math.round(
+						prediction[i].probability * 100,
+						2
+					)}%`;
+
+					// labelContainer.childNodes[i].appendChild(progressDiv);
 				}
 			}
 		</script>
