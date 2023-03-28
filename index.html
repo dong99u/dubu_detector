@@ -90,10 +90,13 @@
 					alt="your image"
 				/>
 				<p class="result-message"></p>
-				<div id="label-container" class="">
+				<div id="label-container" class="hide">
 					<div class="result-box">
 						<span></span>
-						<div class="progress" style="height: 30px">
+						<div
+							class="progress"
+							style="height: 30px; font-size: 1.5em"
+						>
 							<div
 								class="progress-bar progress-bar-striped"
 								role="progressbar"
@@ -105,7 +108,10 @@
 					</div>
 					<div class="result-box">
 						<span></span>
-						<div class="progress" style="height: 30px">
+						<div
+							class="progress"
+							style="height: 30px; font-size: 1.5em"
+						>
 							<div
 								class="progress-bar progress-bar-striped bg-success"
 								role="progressbar"
@@ -226,6 +232,9 @@
 			}
 			// run the webcam image through the image model
 			async function predict() {
+				const labelContainer =
+					document.getElementById("label-container");
+				labelContainer.classList.toggle("hide");
 				// predict can take in an image, video or canvas html element
 				const image = document.getElementById("face-image");
 				const prediction = await model.predict(image, false);
