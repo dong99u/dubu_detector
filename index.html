@@ -114,13 +114,13 @@
 					</p>
 				</div>
 				<p class="result-message"></p>
-				<div id="label-container">
+				<div id="label-container" class="d-none">
 					<div class="d-flex flex-column pt-5 pd-5">
 						<div
-							class="p-3 arab-container d-flex .justify-content-center align-items-center"
+							class="p-3 arab-container d-flex justify-content-center align-items-center"
 						>
 							<div
-								class="arab d-flex .justify-content-start label"
+								class="arab d-flex justify-content-start label"
 							>
 								아랍상
 							</div>
@@ -136,10 +136,10 @@
 						</div>
 
 						<div
-							class="p-3 dubu-container d-flex .justify-content-center align-items-center"
+							class="p-3 dubu-container d-flex justify-content-center align-items-center"
 						>
 							<div
-								class="dubu d-flex .justify-content-start label"
+								class="dubu d-flex justify-content-start label"
 							>
 								두부상
 							</div>
@@ -157,7 +157,7 @@
 				</div>
 
 				<!-- Go to www.addthis.com/dashboard to customize your tools -->
-				<div class="addthis_inline_share_toolbox_ihyu"></div>
+				<div class="mt-5 addthis_inline_share_toolbox_bcq0"></div>
 
 				<div class="pt-5 image-title-wrap">
 					<button
@@ -225,6 +225,7 @@
 					init().then(() => {
 						predict();
 						$("#loading").hide();
+						$(".d-none").removeClass("d-none");
 					});
 				} else {
 					removeUpload();
@@ -345,7 +346,7 @@
 				const title =
 					"<div class='" +
 					prediction[0].className +
-					"-dubu-title'>" +
+					"-dubu-title' style='font-size: 32px; font-weight: 700'>" +
 					resultTitle +
 					"</div>";
 				const explain =
@@ -410,6 +411,7 @@
 			crossorigin="anonymous"
 		></script>
 
+		<!-- Go to www.addthis.com/dashboard to customize your tools -->
 		<!-- Go to www.addthis.com/dashboard to customize your tools -->
 		<script
 			type="text/javascript"
